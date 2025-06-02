@@ -14,4 +14,16 @@
             </div>
         </div>
     </div>
+
+    @auth
+    @if(auth()->user()->is_admin)
+        <form action="{{ route('teams.deleteAll') }}" method="POST" onsubmit="return confirm('Weet je zeker dat je alle teams wilt verwijderen?');">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="bg-red-600 text-white px-4 py-2 rounded mt-4">
+                Verwijder alle teams
+            </button>
+        </form>
+    @endif
+@endauth
 </x-app-layout>

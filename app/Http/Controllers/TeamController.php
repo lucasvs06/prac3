@@ -37,4 +37,15 @@ class TeamController extends Controller
     {
         return view('teams.create');
     }
+
+    public function deleteAll()
+    {
+        if (!auth()->user() || !auth()->user()->is_admin) {
+            abort(403, 'Je hebt hier geen toegang toe.');
+        }
+
+        \App\Models\Team::truncate(); // Verwijdert alle teams
+
+        return redirect()->back()->with('success', 'Alle teams zijn verwijderd.');
+    }
 }

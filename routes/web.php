@@ -34,6 +34,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/teams', [TeamController::class, 'store'])->name('teams.store');
 });
 
+Route::middleware(['auth'])->group(function () {
+    Route::delete('/teams/delete-all', [TeamController::class, 'deleteAll'])->name('teams.deleteAll');
+});
 
 
 require __DIR__.'/auth.php';
